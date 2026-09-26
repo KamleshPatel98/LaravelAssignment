@@ -147,6 +147,19 @@
                                         <i class="fa fa-edit"></i>
                                     </a>
 
+                                    <form action="{{ route('products.destroy', $row->id) }}"
+                                        method="POST"
+                                        class="delete-product-form d-inline">
+
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit"
+                                                class="btn btn-sm btn-outline-danger"
+                                                title="Delete">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
@@ -659,3 +672,32 @@
 </div>
 @endforeach
 @endsection
+
+@push('scripts')
+<script>
+$(document).on('submit', '.delete-product-form', function (e) {
+
+    e.preventDefault();
+
+    let form = this;
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'This product will be permanently deleted.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+            form.submit();
+        }
+
+    });
+
+});
+</script>
+@endpush

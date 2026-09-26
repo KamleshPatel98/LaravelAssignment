@@ -144,7 +144,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return back()->with('success', 'Deleted successfully!');
     }
 
     public function getSubCategories($category)
