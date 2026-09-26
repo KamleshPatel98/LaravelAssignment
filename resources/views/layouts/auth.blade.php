@@ -8,306 +8,12 @@
     <title>@yield('title', 'Marketplace')</title>
 
     <!-- Bootstrap 5 -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        rel="stylesheet">
+    <link href="{{ asset('assets/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Bootstrap Icons -->
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    {{-- <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            background: #f5f7fb;
-            font-family: Arial, sans-serif;
-        }
-
-        .auth-wrapper {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 30px 15px;
-        }
-
-        .auth-card {
-            width: 100%;
-            max-width: 1050px;
-            background: #fff;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
-        }
-
-        /* LEFT PANEL */
-
-        .auth-left {
-            min-height: 600px;
-            padding: 55px;
-            color: #fff;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-
-            position: relative;
-            overflow: hidden;
-
-            background: linear-gradient(
-                135deg,
-                #ff7a18,
-                #ff9f43
-            );
-        }
-
-        .auth-left::before,
-        .auth-left::after {
-            content: "";
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.10);
-        }
-
-        .auth-left::before {
-            width: 350px;
-            height: 350px;
-            top: -130px;
-            right: -130px;
-        }
-
-        .auth-left::after {
-            width: 250px;
-            height: 250px;
-            bottom: -100px;
-            left: -100px;
-        }
-
-        .auth-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .brand {
-            font-size: 30px;
-            font-weight: 700;
-            margin-bottom: 35px;
-        }
-
-        .brand i {
-            margin-right: 8px;
-        }
-
-        .auth-left h1 {
-            font-size: 42px;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
-
-        .auth-left p {
-            font-size: 16px;
-            line-height: 1.7;
-            opacity: 0.92;
-            max-width: 450px;
-        }
-
-        .feature {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-top: 18px;
-        }
-
-        .feature-icon {
-            width: 36px;
-            height: 36px;
-
-            border-radius: 50%;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            background: rgba(255, 255, 255, 0.18);
-        }
-
-        /* RIGHT PANEL */
-
-        .auth-right {
-            min-height: 600px;
-            padding: 55px;
-
-            display: flex;
-            align-items: center;
-        }
-
-        .auth-form {
-            width: 100%;
-            max-width: 430px;
-            margin: auto;
-        }
-
-        .form-title {
-            font-size: 30px;
-            font-weight: 700;
-            color: #212529;
-            margin-bottom: 8px;
-        }
-
-        .form-subtitle {
-            color: #6c757d;
-            margin-bottom: 30px;
-        }
-
-        .form-label {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 7px;
-        }
-
-        .form-control {
-            height: 52px;
-            border-radius: 11px;
-            border: 1px solid #dee2e6;
-            padding: 0 15px;
-        }
-
-        .form-control:focus {
-            border-color: #ff7a18;
-            box-shadow: 0 0 0 0.2rem rgba(255, 122, 24, 0.12);
-        }
-
-        .input-group-text {
-            background: #fff;
-            border-radius: 11px 0 0 11px;
-            border-right: 0;
-            padding-left: 15px;
-        }
-
-        .input-group .form-control {
-            border-left: 0;
-            border-radius: 0 11px 11px 0;
-        }
-
-        .password-toggle {
-            border-radius: 0 11px 11px 0 !important;
-            border-left: 0 !important;
-            background: #fff;
-        }
-
-        .btn-auth {
-            height: 52px;
-            border: none;
-            border-radius: 11px;
-
-            background: #ff7a18;
-            color: #fff;
-
-            font-weight: 600;
-
-            transition: all 0.2s ease;
-        }
-
-        .btn-auth:hover {
-            background: #e9680d;
-            color: #fff;
-            transform: translateY(-1px);
-        }
-
-        .auth-link {
-            color: #ff7a18;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .auth-link:hover {
-            color: #e9680d;
-        }
-
-        .divider {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-
-            color: #adb5bd;
-            font-size: 13px;
-
-            margin: 25px 0;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: "";
-            height: 1px;
-            background: #e9ecef;
-            flex: 1;
-        }
-
-        /* MOBILE */
-
-        @media (max-width: 991px) {
-
-            .auth-left {
-                min-height: 350px;
-            }
-
-            .auth-left h1 {
-                font-size: 34px;
-            }
-
-            .auth-right {
-                min-height: auto;
-            }
-        }
-
-        @media (max-width: 767px) {
-
-            .auth-wrapper {
-                padding: 15px;
-            }
-
-            .auth-card {
-                border-radius: 18px;
-            }
-
-            .auth-left {
-                min-height: auto;
-                padding: 35px 25px;
-            }
-
-            .auth-left h1 {
-                font-size: 30px;
-            }
-
-            .brand {
-                font-size: 24px;
-                margin-bottom: 25px;
-            }
-
-            .auth-left p {
-                font-size: 14px;
-            }
-
-            .feature {
-                margin-top: 12px;
-                font-size: 14px;
-            }
-
-            .auth-right {
-                padding: 35px 25px;
-            }
-
-            .form-title {
-                font-size: 26px;
-            }
-        }
-    </style> --}}
 
     <style>
         * {
@@ -882,6 +588,12 @@
 
 <body>
 
+    <script src="{{ asset('assets/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/bootstrap/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/sweet-alert2/sweet-alert2.min.js') }}"></script>
+
+    <x-alert />
+
     <div class="auth-wrapper">
 
         <div class="auth-card row g-0">
@@ -925,7 +637,6 @@
         </div>
 
     </div>
-
 
     @stack('scripts')
 

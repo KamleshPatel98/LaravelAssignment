@@ -8,6 +8,9 @@
 
         @fonts
 
+        <!-- Bootstrap 5 -->
+        <link href="{{ asset('assets/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
+
         <!-- Styles / Scripts -->
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
             @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -18,6 +21,13 @@
         @endif
     </head>
     <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
+        
+        <script src="{{ asset('assets/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/bootstrap/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('assets/sweet-alert2/sweet-alert2.min.js') }}"></script>
+
+        <x-alert />
+        
         <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">
             @if (Route::has('login'))
                 <nav class="flex items-center justify-end gap-4">
