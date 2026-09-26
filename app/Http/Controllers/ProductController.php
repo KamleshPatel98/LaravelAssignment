@@ -10,9 +10,25 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $records = Product::with([
+            'category:id,name',
+            'subCategory:id,name',
+            'country:id,name',
+            'state:id,name',
+            'city:id,name',
+            'area:id,name',
+        ])
+        ->when($request->name !== null, function($q) use ($request){
+            $q->where('name', 'like', '%' . $request->name . '%');
+        })
+        ->when($request->status !== null, function($q) use ($request){
+            $q->where('status', $request->status);
+        })
+        ->latest()->paginate(10);
+
+        return view('panel.products.index', compact('records'));
     }
 
     /**

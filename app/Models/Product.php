@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
 {
@@ -26,6 +27,13 @@ class Product extends Model
         'price' => 'decimal:2',
         'status' => 'boolean',
     ];
+
+    public function getImageUrlAttribute()
+    {
+        return (!empty($this->image) && Storage::exists('products/' . $this->image))
+            ? asset('storage/products/' . $this->image)
+            : null;
+    }
 
     public function user()
     {
