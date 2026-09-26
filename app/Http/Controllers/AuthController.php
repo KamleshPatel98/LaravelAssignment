@@ -46,7 +46,7 @@ class AuthController extends Controller
         // Automatically login after registration
         Auth::login($user);
         $request->session()->regenerate();
-        return to_route('home')->with('success','Account created successfully!');
+        return to_route('dashboard')->with('success','Account created successfully!');
     }
 
     public function loginForm()
@@ -72,7 +72,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             // Regenerate session after successful login
             $request->session()->regenerate();
-            return to_route('home')->with('success', 'Welcome back!');
+            return to_route('dashboard')->with('success', 'Welcome back!');
         }else{
             return back()->with('error', 'Credential are not match!');
         }
@@ -84,5 +84,12 @@ class AuthController extends Controller
             'products' => Product::count(),
         ];
         return view('panel.dashboard', compact('statics'));
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        session()->flush();
+        return redirect()->route('loginForm')->with('success', 'Logout successfully.');
     }
 }
