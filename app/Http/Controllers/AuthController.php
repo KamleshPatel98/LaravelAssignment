@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -75,5 +76,13 @@ class AuthController extends Controller
         }else{
             return back()->with('error', 'Credential are not match!');
         }
+    }
+
+    public function dashboard()
+    {
+        $statics = [
+            'products' => Product::count(),
+        ];
+        return view('panel.dashboard', compact('statics'));
     }
 }
