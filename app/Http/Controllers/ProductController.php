@@ -148,6 +148,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        deleteFile($product->image, 'products/');
         $product->delete();
         return back()->with('success', 'Deleted successfully!');
     }

@@ -34,7 +34,7 @@
 
                 <div class="row g-3">
 
-                                        {{-- Category --}}
+                    {{-- Category --}}
                     <div class="col-md-3">
                         <label class="form-label">
                             Category <span class="text-danger">*</span>
@@ -42,7 +42,7 @@
 
                         <select name="category_id"
                                 id="category_id"
-                                class="form-select">
+                                class="form-select select-dropdown">
 
                             <option value="">
                                 Select Category
@@ -67,7 +67,7 @@
 
                         <select name="sub_category_id"
                                 id="sub_category_id"
-                                class="form-select">
+                                class="form-select select-dropdown">
 
                             <option value="">
                                 Select Subcategory
@@ -120,7 +120,7 @@
 
                         <select name="country_id"
                                 id="country_id"
-                                class="form-select">
+                                class="form-select select-dropdown">
 
                             <option value="">
                                 Select Country
@@ -145,7 +145,7 @@
 
                         <select name="state_id"
                                 id="state_id"
-                                class="form-select">
+                                class="form-select select-dropdown">
 
                             <option value="">
                                 Select State
@@ -163,7 +163,7 @@
 
                         <select name="city_id"
                                 id="city_id"
-                                class="form-select">
+                                class="form-select select-dropdown">
 
                             <option value="">
                                 Select City
@@ -181,7 +181,7 @@
 
                         <select name="area_id"
                                 id="area_id"
-                                class="form-select">
+                                class="form-select select-dropdown">
 
                             <option value="">
                                 Select Area
@@ -194,7 +194,7 @@
                     {{-- Price --}}
                     <div class="col-md-6">
                         <label class="form-label">
-                            Price
+                            Price <span class="text-danger">*</span>
                         </label>
 
                         <div class="input-group">
