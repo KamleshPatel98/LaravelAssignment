@@ -46,7 +46,7 @@
         Enter your account details to continue.
     </p>
 
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('loginSubmit') }}">
 
         @csrf
 

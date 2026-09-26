@@ -49,12 +49,15 @@ class AuthController extends Controller
         return to_route('dashboard')->with('success','Account created successfully!');
     }
 
-    public function loginForm()
+    public function login()
     {
+        if(Auth::check()){
+            return to_route('dashboard');
+        }
         return view('auth.login');
     }
 
-    public function login(Request $request)
+    public function loginSubmit(Request $request)
     {
         $credentials = $request->validate([
             'email' => [
@@ -90,6 +93,6 @@ class AuthController extends Controller
     {
         Auth::logout();
         session()->flush();
-        return redirect()->route('loginForm')->with('success', 'Logout successfully.');
+        return redirect()->route('login')->with('success', 'Logout successfully.');
     }
 }

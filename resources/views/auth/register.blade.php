@@ -190,7 +190,7 @@
 
         Already have an account?
 
-        <a href="{{ route('loginForm') }}"
+        <a href="{{ route('login') }}"
            class="auth-link">
 
             Sign in

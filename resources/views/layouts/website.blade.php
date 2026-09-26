@@ -487,7 +487,7 @@
 
                     <li class="nav-item">
                         <a class="nav-link"
-                           href="{{ route('loginForm') }}">
+                           href="{{ route('login') }}">
                             Login
                         </a>
                     </li>
@@ -496,7 +496,7 @@
 
                 <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
 
-                    <a href="{{ route('loginForm') }}"
+                    <a href="{{ route('products.create') }}"
                        class="sell-btn">
                         <i class="fa fa-plus me-1"></i>
                         SELL

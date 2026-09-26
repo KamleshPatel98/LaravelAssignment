@@ -15,14 +15,14 @@ Route::get('product/{slug}', [WebsiteController::class, 'productShow'])->name('p
 Route::get('register-form', [AuthController::class, 'registerForm'])->name('registerForm');
 Route::post('register', [AuthController::class, 'register'])->name('register');
 
-Route::get('login-form', [AuthController::class, 'loginForm'])->name('loginForm');
-Route::post('login', [AuthController::class, 'login'])->name('login');
+Route::get('login', [AuthController::class, 'login'])->name('login');
+Route::post('login-submit', [AuthController::class, 'loginSubmit'])->name('loginSubmit');
 
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
 
-    Route::resource('products', ProductController::class)->except('show');
+    Route::resource('products', ProductController::class);
     Route::get('/products/subcategories/{category}', [ProductController::class, 'getSubCategories'])
         ->name('products.subcategories');
     Route::get('/products/states/{country}', [ProductController::class, 'getStates'])

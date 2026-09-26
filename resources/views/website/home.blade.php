@@ -83,7 +83,7 @@
                     from people and businesses near you.
                 </p>
 
-                <a href="{{ route('loginForm') }}"
+                <a href="{{ route('products.create') }}"
                    class="hero-btn d-inline-block mt-3">
                     <i class="fa fa-plus me-2"></i>
                     Start Selling
@@ -115,11 +115,6 @@
             <h2 class="section-title mb-0">
                 Explore Categories
             </h2>
-
-            <a href="#" class="text-dark fw-semibold">
-                View All
-                <i class="fa fa-arrow-right ms-1"></i>
-            </a>
 
         </div>
 
