@@ -33,6 +33,7 @@ class CategorySeeder extends Seeder
                 'name' => $category,
                 'slug' => Str::slug($category),
                 'description' => null,
+                'image' => null,
                 'status' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
