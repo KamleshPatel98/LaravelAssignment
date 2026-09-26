@@ -27,7 +27,7 @@ class WebsiteController extends Controller
         })
         ->where('status', true)
         ->latest()
-        ->paginate(1);
+        ->paginate(12);
         $cities = City::pluck('name', 'id');
         return view('website.home', compact('categories', 'products', 'cities'));
     }

@@ -27,7 +27,8 @@
         <div class="card-header bg-white border-bottom py-3 px-3 px-md-4">
 
             <form action="{{ route('products.store') }}"
-                  method="POST">
+                  method="POST"
+                  enctype="multipart/form-data">
 
                 @csrf
 
@@ -213,6 +214,21 @@
                         </div>
                     </div>
 
+                    {{-- Price --}}
+                    <div class="col-md-6">
+                        <label class="form-label">
+                            Image
+                        </label>
+
+                        <div class="input-group">
+
+                            <input type="file"
+                                   name="image"
+                                   class="form-control"
+                                   accept="image/*">
+
+                        </div>
+                    </div>
 
                     {{-- Buttons --}}
                     <div class="col-12 mt-4">
@@ -273,7 +289,7 @@ $(document).ready(function () {
 
         $.ajax({
 
-            url: "{{ url('/products/subcategories') }}/" + categoryId,
+            url: "{{ url('/admin/products/subcategories') }}/" + categoryId,
 
             type: "GET",
 
@@ -335,7 +351,7 @@ $(document).ready(function () {
 
         $.ajax({
 
-            url: "{{ url('/products/states') }}/" + countryId,
+            url: "{{ url('/admin/products/states') }}/" + countryId,
 
             type: "GET",
 
@@ -394,7 +410,7 @@ $(document).ready(function () {
 
         $.ajax({
 
-            url: "{{ url('/products/cities') }}/" + stateId,
+            url: "{{ url('/admin/products/cities') }}/" + stateId,
 
             type: "GET",
 
@@ -450,7 +466,7 @@ $(document).ready(function () {
 
         $.ajax({
 
-            url: "{{ url('/products/areas') }}/" + cityId,
+            url: "{{ url('/admin/products/areas') }}/" + cityId,
 
             type: "GET",
 

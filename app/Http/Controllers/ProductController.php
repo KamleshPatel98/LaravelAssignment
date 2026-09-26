@@ -34,7 +34,9 @@ class ProductController extends Controller
         ->when($request->status !== null, function($q) use ($request){
             $q->where('status', $request->status);
         })
-        ->latest()->paginate(10);
+        ->where('user_id', Auth::id())
+        ->latest()
+        ->paginate(10);
 
         return view('panel.products.index', compact('records'));
     }
@@ -76,6 +78,7 @@ class ProductController extends Controller
             'area_id' => 'required|exists:areas,id',
 
             'price' => 'nullable|numeric|min:0',
+            'image' => 'nullable|mimes:jpeg,jpg,png,webp',
         ]);
 
         $product = Product::create([
@@ -95,6 +98,7 @@ class ProductController extends Controller
 
             'price' => $request->price,
             'status' => true,
+            'image' => uploadFile($request->image, 'products/')
         ]);
 
         // OLX style slug
