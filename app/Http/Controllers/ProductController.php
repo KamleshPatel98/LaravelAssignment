@@ -132,7 +132,43 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::where('status', true)
+            ->orderBy('name')
+            ->pluck('name', 'id');
+
+        $subCategories = SubCategory::where('category_id', $product->category_id)
+            ->where('status', true)
+            ->orderBy('name')
+            ->pluck('name', 'id');
+
+        $countries = Country::where('status', true)
+            ->orderBy('name')
+            ->get();
+
+        $states = State::where('country_id', $product->country_id)
+            ->where('status', true)
+            ->orderBy('name')
+            ->get();
+
+        $cities = City::where('state_id', $product->state_id)
+            ->where('status', true)
+            ->orderBy('name')
+            ->get();
+
+        $areas = Area::where('city_id', $product->city_id)
+            ->where('status', true)
+            ->orderBy('name')
+            ->get();
+
+        return view('panel.products.edit', compact(
+            'product',
+            'categories',
+            'subCategories',
+            'countries',
+            'states',
+            'cities',
+            'areas'
+        ));
     }
 
     /**
@@ -140,7 +176,65 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'detail' => 'nullable|string',
+
+            'category_id' => 'required|exists:categories,id',
+            'sub_category_id' => 'required|exists:sub_categories,id',
+
+            'country_id' => 'required|exists:countries,id',
+            'state_id' => 'required|exists:states,id',
+            'city_id' => 'required|exists:cities,id',
+            'area_id' => 'required|exists:areas,id',
+
+            'price' => 'nullable|numeric|min:0',
+            'image' => 'nullable|mimes:jpeg,jpg,png,webp',
+        ]);
+
+        if ($request->image) {
+            $image = uploadFile($request->image, 'products/');
+            deleteFile($product->image, 'products/');
+        } else {
+            $image = $product->image;
+        }
+
+        $area = Area::findOrFail($request->area_id);
+
+        $city = City::findOrFail($request->city_id);
+
+
+        $product = Product::find($product->id)
+            ->where('user_id', Auth::id())
+            ->update([
+            'name' => $request->name,
+            'detail' => $request->detail,
+            'slug' => Str::slug(
+                $request->name .
+                '-in-' .
+                $area->name .
+                '-' .
+                $city->name .
+                '-iid-' .
+                $request->id
+            ),
+            'user_id' => Auth::id(),
+
+            'category_id' => $request->category_id,
+            'sub_category_id' => $request->sub_category_id,
+
+            'country_id' => $request->country_id,
+            'state_id' => $request->state_id,
+            'city_id' => $request->city_id,
+            'area_id' => $request->area_id,
+
+            'price' => $request->price,
+            'status' => true,
+            'image' => $image
+        ]);
+
+        return to_route('products.index')
+            ->with('success', 'Product updated successfully.');
     }
 
     /**

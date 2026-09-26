@@ -84,7 +84,7 @@ class AuthController extends Controller
     public function dashboard()
     {
         $statics = [
-            'products' => Product::count(),
+            'products' => Product::where('user_id', Auth::id())->count(),
         ];
         return view('panel.dashboard', compact('statics'));
     }
