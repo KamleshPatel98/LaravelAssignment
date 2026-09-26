@@ -632,9 +632,15 @@
 <script>
     // select2
     $(document).ready(function() {
-        $('.select-dropdown').select2({
+        $('.citySelect').select2({
             width: '100%',
-            placeholder: 'Select an option',
+            placeholder: 'Select an city',
+            allowClear: true
+        });
+
+        $('.categorySelect').select2({
+            width: '100%',
+            placeholder: 'Select an category',
             allowClear: true
         });
     });

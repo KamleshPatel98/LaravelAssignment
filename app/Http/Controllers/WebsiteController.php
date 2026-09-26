@@ -12,7 +12,7 @@ class WebsiteController extends Controller
 {
     public function home(Request $request)
     {
-        $categories = Category::pluck('name','slug');
+        $categories = Category::pluck('name','id');
         $products = Product::with([
             'category',
             'subCategory',
@@ -25,9 +25,13 @@ class WebsiteController extends Controller
         ->when(request('city'), function ($query) {
             $query->where('city_id', request('city'));
         })
+        ->when(request('category'), function ($query) {
+            $query->where('category_id', request('category'));
+        })
         ->where('status', true)
         ->latest()
-        ->paginate(12);
+        ->take(12)
+        ->get();
         $cities = City::pluck('name', 'id');
         return view('website.home', compact('categories', 'products', 'cities'));
     }

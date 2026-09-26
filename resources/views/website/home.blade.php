@@ -16,7 +16,7 @@
                 <div class="col-lg-3 search-location">
 
                     <select name="city"
-                        class="form-select select-dropdown">
+                        class="form-select citySelect">
 
                     <option value="">
                         All Locations
@@ -33,7 +33,27 @@
 
                 </div>
 
-                <div class="col-lg-8">
+                <div class="col-lg-3 search-location">
+
+                    <select name="category"
+                        class="form-select categorySelect">
+
+                        <option value="">
+                            All Categories
+                        </option>
+
+                        @foreach ($categories as $id => $name)
+                            <option value="{{ $id }}"
+                                {{ request('category') == $id ? 'selected' : '' }}>
+                                {{ $name }}
+                            </option>
+                        @endforeach
+
+                    </select>
+
+                </div>
+
+                <div class="col-lg-5">
 
                     <input type="text"
                         name="name"
