@@ -216,7 +216,7 @@ class ProductController extends Controller
                 '-' .
                 $city->name .
                 '-iid-' .
-                $request->id
+                $product->id
             ),
             'user_id' => Auth::id(),
 
