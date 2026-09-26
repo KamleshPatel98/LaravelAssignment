@@ -52,4 +52,28 @@ class AuthController extends Controller
     {
         return view('auth.login');
     }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => [
+                'required',
+                'email',
+                'exists:users,email'
+            ],
+
+            'password' => [
+                'required',
+                'string',
+            ],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            // Regenerate session after successful login
+            $request->session()->regenerate();
+            return to_route('home')->with('success', 'Welcome back!');
+        }else{
+            return back()->with('error', 'Credential are not match!');
+        }
+    }
 }

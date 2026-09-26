@@ -46,35 +46,6 @@
         Enter your account details to continue.
     </p>
 
-
-    {{-- Validation Errors --}}
-    @if($errors->any())
-
-        <div class="alert alert-danger">
-
-            <ul class="mb-0 ps-3">
-
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-
-            </ul>
-
-        </div>
-
-    @endif
-
-
-    {{-- Success Message --}}
-    @if(session('status'))
-
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-
-    @endif
-
-
     <form method="POST" action="{{ route('login') }}">
 
         @csrf
@@ -116,17 +87,6 @@
                 <label class="form-label">
                     Password
                 </label>
-
-                @if(Route::has('password.request'))
-
-                    <a href="{{ route('password.request') }}"
-                       class="auth-link small">
-
-                        Forgot password?
-
-                    </a>
-
-                @endif
 
             </div>
 
