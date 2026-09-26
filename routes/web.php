@@ -19,4 +19,12 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
 
     Route::resource('products', ProductController::class);
+    Route::get('/products/subcategories/{category}', [ProductController::class, 'getSubCategories'])
+        ->name('products.subcategories');
+    Route::get('/products/states/{country}', [ProductController::class, 'getStates'])
+        ->name('products.states');
+    Route::get('/products/cities/{state}', [ProductController::class, 'getCities'])
+        ->name('products.cities');
+    Route::get('/products/areas/{city}', [ProductController::class, 'getAreas'])
+        ->name('products.areas');
 });
